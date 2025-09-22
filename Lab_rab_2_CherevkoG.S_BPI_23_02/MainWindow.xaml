@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:Lab_rab_2_CherevkoG.S_BPI_23_02"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <GroupBox Header="Параметры" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="N"/>
+                <TextBox Text="0,00"/>
+                <Label Content="K"/>
+                <TextBox Text="0,00"/>
+                <Label Content="x"/>
+                <TextBox Text="0,00"/>
+                <Label Content="y"/>
+                <TextBox Text="0,00"/>
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
 </Window>
