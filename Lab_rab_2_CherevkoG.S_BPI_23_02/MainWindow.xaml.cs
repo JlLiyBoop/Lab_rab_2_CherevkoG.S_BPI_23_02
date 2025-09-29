@@ -45,5 +45,49 @@ namespace Lab_rab_2_CherevkoG.S_BPI_23_02
                 MessageBox.Show($"Ошибка вычисления: {ex.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private bool ValidateNK(string input, string pName, out int result, out string errorMessage)
+        {
+            result = 0;
+            errorMessage = "";
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                errorMessage = $"{pName}: Не введено!";
+                return false;
+            }
+
+            if (!int.TryParse(input, out result))
+            {
+                errorMessage = $"{pName}: Переменная должна быть целой!";
+                return false;
+            }
+
+            if (result <= 0)
+            {
+                errorMessage = $"{pName}: Должен быть больше нуля";
+                return false;
+            }
+
+            return true;
+        }
+        private bool ValidateOther(string input, string paramName, out double result, out string errorMessage)
+        {
+            result = 0;
+            errorMessage = "";
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                errorMessage = $"{paramName}: Не введено!";
+                return false;
+            }
+
+            if (!double.TryParse(input, out result))
+            {
+                errorMessage = $"{paramName}: Не похоже на число...";
+                return false;
+            }
+
+            return true;
+        }
     }
 }
