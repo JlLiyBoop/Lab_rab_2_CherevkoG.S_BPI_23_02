@@ -58,7 +58,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Name="buttonCalc" Content="Рассчитать Z" Height="30" Margin="5" Click="ButtonCalc_Click" MaxWidth="150" HorizontalAlignment="Left" 
+            <Button Name="buttonCalc" Content="Рассчитать Z" Height="30" Margin="5" Click="ButtonCalc_Click" MaxWidth="180" HorizontalAlignment="Center" 
                     Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
             <Label Grid.Row="0" Grid.Column="1" Content="Ответ:"/>
             <TextBox Grid.Row="1" Grid.Column="1" Name="Result" Text="Ответ" Height="40" IsReadOnly="True"/>
