@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_rab_2_CherevkoG.S_BPI_23_02"
         mc:Ignorable="d"
-        Title="MainWindow" Height="420" Width="480" WindowStartupLocation="CenterScreen" SizeToContent="Height">
+        Title="MainWindow" Height="400" Width="480" WindowStartupLocation="CenterScreen" SizeToContent="Height" MinHeight="400" MinWidth="480" MaxHeight="400" MaxWidth="480">
     <StackPanel>
         <Label Content="Формула для расчета:" HorizontalAlignment="Center"/>
         <Image Source="Формула15.png" Margin="1" MaxHeight="40"/>
@@ -55,13 +55,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Name="buttonCalc" Content="Рассчитать Z" Height="30" Margin="5" Click="ButtonCalc_Click" MaxWidth="180" HorizontalAlignment="Center" 
-                    Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="Ответ:"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="Result" Text="Ответ" Height="40" IsReadOnly="True"/>
+                    Grid.Column="0" Grid.Row="0"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Ответ:" HorizontalAlignment="Right"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Name="Result" Text="Ответ" IsReadOnly="True"/>
         </Grid>
     </StackPanel>
 </Window>

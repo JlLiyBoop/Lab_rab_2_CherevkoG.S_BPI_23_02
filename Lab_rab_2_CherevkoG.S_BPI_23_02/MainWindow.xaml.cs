@@ -23,7 +23,6 @@ namespace Lab_rab_2_CherevkoG.S_BPI_23_02
         {
             InitializeComponent();
             Params();
-            ValidateAll();
         }
         private void Params()
         {
@@ -34,38 +33,98 @@ namespace Lab_rab_2_CherevkoG.S_BPI_23_02
             comboF.ItemsSource = Calculate.GetOtherValues();
             comboY.ItemsSource = Calculate.GetOtherValues();
 
-            comboN.SelectedIndex = 2;
-            comboK.SelectedIndex = 2;
-            comboP.SelectedIndex = 1;
-            comboX.SelectedIndex = 1;
-            comboF.SelectedIndex = 1;
-            comboY.SelectedIndex = 1;
+            comboN.SelectedIndex = 4;
+            comboK.SelectedIndex = 3;
+            comboP.SelectedIndex = 2;
+            comboX.SelectedIndex = 2;
+            comboF.SelectedIndex = 2;
+            comboY.SelectedIndex = 2;
         }
-
-        private void ButtonCalc_Click(object sender, RoutedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (buttonCalc.IsEnabled == false)
+            if (sender is ComboBox comboBox && comboBox.SelectedItem != null)
             {
-                MessageBox.Show("Беда");
+                string value = comboBox.SelectedItem.ToString();
+                switch (comboBox.Name)
+                {
+                    case "comboN": textN.Text = value; break;
+                    case "comboK": textK.Text = value; break;
+                    case "comboP": textP.Text = value; break;
+                    case "comboX": textX.Text = value; break;
+                    case "comboF": textF.Text = value; break;
+                    case "comboY": textY.Text = value; break;
+                }
+            }
+            HelpValidateAll();
+        }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            HelpValidateAll();
+        }
+        private void HelpValidateAll()
+        {
+            if (textN == null || textK == null || textP == null ||
+                textX == null || textF == null || textY == null ||
+                buttonCalc == null)
+            {
                 return;
             }
-            try
+
+            ValidateAll();
+        }
+        private void ValidateAll()
+        {
+            bool allValid = true;
+            string errorMessage = "";
+
+            if (!ValidateNK(textN.Text, "N", out int n, out string nError))
             {
-                int n = int.Parse(textN.Text);
-                int k = int.Parse(textK.Text);
-                double p = double.Parse(textP.Text);
-                double x = double.Parse(textX.Text);
-                double f = double.Parse(textF.Text);
-                double y = double.Parse(textY.Text);
-
-                double result = Calculate.CalcZ(n, k, p, x, f, y);
-
-                Result.Text = $"Z = {result:F6}\n\nВходные параметры:\nN={n}, K={k}, P={p}, X={x}, F={f}, Y={y}";
-                Result.Background = Brushes.LightGreen;
+                allValid = false;
+                errorMessage += nError + "\n";
             }
-            catch (System.Exception ex)
+
+            if (!ValidateNK(textK.Text, "K", out int k, out string kError))
             {
-                MessageBox.Show($"Ошибка вычисления: {ex.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                allValid = false;
+                errorMessage += kError + "\n";
+            }
+
+            if (!ValidateOther(textP.Text, "P", out double p, out string pError))
+            {
+                allValid = false;
+                errorMessage += pError + "\n";
+            }
+
+            if (!ValidateOther(textX.Text, "X", out double x, out string xError))
+            {
+                allValid = false;
+                errorMessage += xError + "\n";
+            }
+
+            if (!ValidateOther(textF.Text, "F", out double f, out string fError))
+            {
+                allValid = false;
+                errorMessage += fError + "\n";
+            }
+
+            if (!ValidateOther(textY.Text, "Y", out double y, out string yError))
+            {
+                allValid = false;
+                errorMessage += yError + "\n";
+            }
+            buttonCalc.IsEnabled = allValid;
+            if (Result != null)
+            {
+                if (allValid)
+                {
+                    Result.Text = "Все параметры корректны";
+                    Result.Background = Brushes.LightGreen;
+                }
+                else
+                {
+                    Result.Text = "Исправьте ошибки:\n" + errorMessage.Trim();
+                    Result.Background = Brushes.LightPink;
+                }
             }
         }
         private bool ValidateNK(string input, string pName, out int result, out string errorMessage)
@@ -112,69 +171,31 @@ namespace Lab_rab_2_CherevkoG.S_BPI_23_02
 
             return true;
         }
-        private void ValidateAll()
+        private void ButtonCalc_Click(object sender, RoutedEventArgs e)
         {
-            bool allValid = true;
-            string errorMessage = "";
-
-            if (!ValidateNK(textN.Text, "N", out int n, out string nError))
+            if (buttonCalc.IsEnabled == false)
             {
-                allValid = false;
-                errorMessage += nError + "\n";
+                MessageBox.Show("Беда");
+                return;
             }
-
-            if (!ValidateNK(textK.Text, "K", out int k, out string kError))
+            try
             {
-                allValid = false;
-                errorMessage += kError + "\n";
-            }
+                int n = int.Parse(textN.Text);
+                int k = int.Parse(textK.Text);
+                double p = double.Parse(textP.Text);
+                double x = double.Parse(textX.Text);
+                double f = double.Parse(textF.Text);
+                double y = double.Parse(textY.Text);
 
-            if (!ValidateOther(textP.Text, "P", out double p, out string pError))
-            {
-                allValid = false;
-                errorMessage += pError + "\n";
-            }
+                double result = Calculate.CalcZ(n, k, p, x, f, y);
 
-            if (!ValidateOther(textX.Text, "X", out double x, out string xError))
-            {
-                allValid = false;
-                errorMessage += xError + "\n";
+                Result.Text = $"Z = {result:F6}\n\nВходные параметры:\nN={n}, K={k}, P={p}, X={x}, F={f}, Y={y}";
+                Result.Background = Brushes.LightGreen;
             }
-
-            if (!ValidateOther(textF.Text, "F", out double f, out string fError))
+            catch (System.Exception ex)
             {
-                allValid = false;
-                errorMessage += fError + "\n";
+                MessageBox.Show($"Ошибка вычисления: {ex.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            if (!ValidateOther(textY.Text, "Y", out double y, out string yError))
-            {
-                allValid = false;
-                errorMessage += yError + "\n";
-            }
-            buttonCalc.IsEnabled = allValid;
-        }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is ComboBox comboBox && comboBox.SelectedItem != null)
-            {
-                string value = comboBox.SelectedItem.ToString();
-                switch (comboBox.Name)
-                {
-                    case "comboN": textN.Text = value; break;
-                    case "comboK": textK.Text = value; break;
-                    case "comboP": textP.Text = value; break;
-                    case "comboX": textX.Text = value; break;
-                    case "comboF": textF.Text = value; break;
-                    case "comboY": textY.Text = value; break;
-                }
-            }
-            ValidateAll();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ValidateAll();
         }
     }
 }
