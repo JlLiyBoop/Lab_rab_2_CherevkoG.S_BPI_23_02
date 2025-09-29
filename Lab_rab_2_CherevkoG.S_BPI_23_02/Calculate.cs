@@ -17,7 +17,7 @@ namespace Lab_rab_2_CherevkoG.S_BPI_23_02
             {
                 for (int j = 1; j <= K; j++)
                 {
-                    double chisl = System.Math.Pow(p, i - 1) * x + System.Math.Pow(f, j - 1) * ysq;
+                    double chisl = Math.Pow(p, i - 1) * x + Math.Pow(f, j - 1) * ysq;
                     double znam = i * j;
                     sum += chisl / znam;
                 }
@@ -25,12 +25,7 @@ namespace Lab_rab_2_CherevkoG.S_BPI_23_02
             return sum;
         }
 
-        public static List<int> GetNValues()
-        {
-            return new List<int> { 1, 2, 3, 4, 5, 10, 15, 20 };
-        }
-
-        public static List<int> GetKValues()
+        public static List<int> GetNKValues()
         {
             return new List<int> { 1, 2, 3, 4, 5, 10, 15, 20 };
         }
