@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace Lab_rab_2_CherevkoG.S_BPI_23_02
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
