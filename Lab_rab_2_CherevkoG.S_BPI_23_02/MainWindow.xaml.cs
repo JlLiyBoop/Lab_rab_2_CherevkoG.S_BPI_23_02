@@ -22,5 +22,9 @@ namespace Lab_rab_2_CherevkoG.S_BPI_23_02
         {
             InitializeComponent();
         }
+        private void Calc_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
