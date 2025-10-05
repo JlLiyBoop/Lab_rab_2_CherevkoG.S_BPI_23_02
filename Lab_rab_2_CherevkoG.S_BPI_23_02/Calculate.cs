@@ -1,14 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab_rab_2_CherevkoG.S_BPI_23_02
 {
     public static class Calculate
     {
-        public static double CalcZ(int N, int K, double p, double x, double f, double y)
+        public static double Calculate1(double a, int f)
+        {
+            return Math.Sin(f * a);
+        }
+
+        public static double Calculate2(double a, double b, int f)
+        {
+            return Math.Cos(f * a) + Math.Sin(f * b);
+        }
+
+        public static double Calculate3(double a, double b, int c, int d)
+        {
+            return c * Math.Pow(a, 2) + d * Math.Pow(b, 2);
+        }
+
+        public static double Calculate4(double a, int c, int d)
+        {
+            double sum = 0;
+            for (int i = 0; i <= d; i++)
+            {
+                sum += Math.Pow(c + a, i);
+            }
+            return sum;
+        }
+
+        public static double Calculate5(int N, int K, double p, double x, double f, double y)
         {
             double sum = 0.0;
             double ysq = y * y;
@@ -23,6 +45,31 @@ namespace Lab_rab_2_CherevkoG.S_BPI_23_02
                 }
             }
             return sum;
+        }
+
+        public static List<int> GetFValues1()
+        {
+            return new List<int> { 4, 5, 6, 7, 8, 9 };
+        }
+
+        public static List<int> GetFValues2()
+        {
+            return new List<int> { 10, 20, 30, 40 };
+        }
+
+        public static List<int> GetCValues3()
+        {
+            return new List<int> { 0, 1 };
+        }
+
+        public static List<int> GetDValues3()
+        {
+            return new List<int> { -1, 0, 1 };
+        }
+
+        public static List<int> GetCValues4()
+        {
+            return new List<int> { 0, 1, 2, 3, 4, 5 };
         }
 
         public static List<int> GetNKValues()
