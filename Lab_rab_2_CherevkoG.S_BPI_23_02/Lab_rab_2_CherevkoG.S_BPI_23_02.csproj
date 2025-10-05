@@ -95,5 +95,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Формула15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\converted_image.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
